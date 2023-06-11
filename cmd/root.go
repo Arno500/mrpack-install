@@ -234,9 +234,6 @@ var rootCmd = &cobra.Command{
 		var downloads []*requester.Download
 		for i := range index.Files {
 			file := index.Files[i]
-			if file.Env.Server == modrinth.UnsupportedEnvSupport {
-				continue
-			}
 			downloads = append(downloads, requester.NewDownload(file.Downloads, map[string]string{"sha1": string(file.Hashes.Sha1)}, filepath.Base(file.Path), path.Join(serverDir, filepath.Dir(file.Path))))
 		}
 		downloadPools := requester.NewDownloadPools(requester.DefaultHttpClient, downloads, downloadThreads, retryTimes)

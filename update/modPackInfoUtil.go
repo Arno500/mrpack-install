@@ -25,9 +25,6 @@ func GenerateModPackInfo(modPackPatch string) (*ModPackInfo, error) {
 
 	// Add modrinth.index file
 	for _, file := range modrinthIndex.Files {
-		if file.Env.Server == "unsupported" {
-			continue
-		}
 		modPackInfo.File[Path(file.Path)] = FileInfo{Hash: string(file.Hashes.Sha1), DownloadLink: file.Downloads}
 	}
 
